@@ -1,0 +1,120 @@
+.main-menu{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+.main-menu-item {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+}
+.main-menu-item a {
+    display: block;
+    height: 50px;
+    padding: 0px 15px;
+}
+.main-menu-item.active a{
+    color: rgb(255, 0, 234);
+}
+.main-menu-item a:hover{
+    background: red;
+}
+header{
+    border-bottom: 1px solid #ccc;    
+    background: #fff200;
+    margin-bottom: 20px;
+}
+main{
+    margin-bottom: 20px;
+}
+.main-logo img {
+    max-height: 50px;
+}
+.slider img{
+    max-width: 100%;
+}
+.small-article img{
+    max-width: 100%;
+    filter: grayscale(100%);
+}
+.small-article img:hover{
+    filter: grayscale(0%);
+}
+.slider-row{
+    margin-bottom: 20px;
+}
+footer{
+    border-top: 1px solid #ccc;
+}
+footer div{
+    line-height: 50px;
+}
+.breadcrumbs{
+    margin-bottom: 20px;
+}
+.breadcrumbs .seperator{
+    margin: 0px 10px;
+}
+.medium-article img{
+    max-width: 100%;
+}
+.medium-article hr{
+    border-top: 1px solid #ccc;
+}
+.paging{
+    list-style: none;
+    float: right;
+    margin: 0px;
+    padding: 0px;
+}
+.paging li{
+    float: left;
+    margin: 0 5px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+.paging li.active a {
+    font-weight: bold;
+}
+.images-col .row{
+    margin-bottom: 20px;
+}
+.images-col img{
+    max-width: 100%;
+}
+.full-article h2{
+    margin-top: 0px;
+}
+.chat-main-window{
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+}
+.chat-message{
+    border-top: 1px solid #ccc;
+    padding: 10px;
+}
+.chat-message:first-child{
+    border-top: none;
+}
+.chat-message h5 em{
+    color: #ccc;
+    font-size: 12px;
+    font-style: normal; 
+}
+.chat-message-form{
+    padding: 10px;
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 0px 1px 1px 1px;
+    overflow: hidden;
+}
+#chat-username-input{
+    width: 300px;
+}
+#chat-send-message-button{
+    margin-top: 45px;
+}
