@@ -56,26 +56,8 @@
                             <h5>Pēteris <em>2018-01-01 00:00:00</em></h5>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem soluta delectus facere eius quisquam aut perspiciatis excepturi, minima, aliquam minus possimus unde? Quae explicabo iusto, molestiae nulla doloribus saepe sequi!</p>
                         </div><!-- chat-message -->
-                        <div class="chat-message">
-                            <h5>Pēteris <em>2018-01-01 00:00:00</em></h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem soluta delectus facere eius quisquam aut perspiciatis excepturi, minima, aliquam minus possimus unde? Quae explicabo iusto, molestiae nulla doloribus saepe sequi!</p>
-                        </div><!-- chat-message -->
-                        <div class="chat-message">
-                            <h5>Pēteris <em>2018-01-01 00:00:00</em></h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem soluta delectus facere eius quisquam aut perspiciatis excepturi, minima, aliquam minus possimus unde? Quae explicabo iusto, molestiae nulla doloribus saepe sequi!</p>
-                        </div><!-- chat-message -->
-                        <div class="chat-message">
-                            <h5>Pēteris <em>2018-01-01 00:00:00</em></h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem soluta delectus facere eius quisquam aut perspiciatis excepturi, minima, aliquam minus possimus unde? Quae explicabo iusto, molestiae nulla doloribus saepe sequi!</p>
-                        </div><!-- chat-message -->
-                        <div class="chat-message">
-                            <h5>Pēteris <em>2018-01-01 00:00:00</em></h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem soluta delectus facere eius quisquam aut perspiciatis excepturi, minima, aliquam minus possimus unde? Quae explicabo iusto, molestiae nulla doloribus saepe sequi!</p>
-                        </div><!-- chat-message -->
-                        <div class="chat-message">
-                            <h5>Pēteris <em>2018-01-01 00:00:00</em></h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem soluta delectus facere eius quisquam aut perspiciatis excepturi, minima, aliquam minus possimus unde? Quae explicabo iusto, molestiae nulla doloribus saepe sequi!</p>
-                        </div><!-- chat-message -->
+                        
+                        
                     </div><!-- chat-main-window -->
                 </div>
                 <div class="col-sm-12 ">
@@ -114,5 +96,34 @@
             </div>    
         </div>
     </footer>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <!-- <div class="chat-message">
+            <h5>Pēteris <em>2018-01-01 00:00:00</em></h5>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem soluta delectus facere eius quisquam aut perspiciatis excepturi, minima, aliquam minus possimus unde? Quae explicabo iusto, molestiae nulla doloribus saepe sequi!</p>
+        </div> -->
+    <script>
+        $('#chat-send-message-button').click(function(){
+            // kādus datus insertot
+            var username = $('#chat-username-input').val();
+            var text = $('#chat-text-input').val();
+            var date = new Date();
+
+            // kādu elementu insertot
+            var html = '<div class="chat-message">'+
+                '<h5>'+username+' <em>'+date+'</em></h5>'+
+                '<p>'+text+'</p>'+
+                '</div>';
+            
+            var chatMessage = $('<div>').addClass('chat-message');
+            var dateElement = $('<em>').text(date);
+            var title = $('<h5>').text(username).append(dateElement);
+            var messageElement = $('<p>').text(text);
+            chatMessage.append(title).append(messageElement);
+            // pats insert
+            $('.chat-main-window').append(chatMessage);
+            $('#chat-text-input').val('');
+        });
+    
+    </script>
 </body>
 </html>
