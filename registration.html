@@ -52,24 +52,29 @@
 
             <div class="row">
                 <div class="col-sm-4">
-                    <form>
-                        <div class="form-group">
-                            <input type="username" class="form-control" placeholder="Username*">
+                    <form id="reg-form">
+                        <div class="errors" style="display:none;">
+                            <ul>
+
+                            </ul>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password*">
+                            <input type="text" name="username" class="form-control" placeholder="Username*">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Retype password*">
+                            <input type="password" name="password" class="form-control" placeholder="Password*">
                         </div>
                         <div class="form-group">
-                            <input type="first_name" class="form-control" placeholder="First name*">
+                            <input type="password" name="password2" class="form-control" placeholder="Retype password*">
                         </div>
                         <div class="form-group">
-                            <input type="fast_name" class="form-control" placeholder="Last name">
+                            <input type="text" name="first_name" class="form-control" placeholder="First name*">
                         </div>
                         <div class="form-group">
-                            <select placeholder="Please select coutnry" class="form-control">
+                            <input type="text" name="fast_name" class="form-control" placeholder="Last name">
+                        </div>
+                        <div class="form-group" >
+                            <select placeholder="Please select coutnry" name="country" class="form-control">
                                 <option value="0">Select coutnry</option>
                                 <option value="1">Latvia</option>
                                 <option value="2">Lithuania</option>
@@ -81,7 +86,7 @@
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox"> Agree with some GDPR related stuff
+                                <input type="checkbox" name="agree" value="1"> Agree with some GDPR related stuff
                             </label>
                         </div>
                         <button type="submit" class="btn btn-default">Submit</button>
@@ -100,5 +105,56 @@
             </div>    
         </div>
     </footer>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script>
+        $('#reg-form').submit(function(){
+            var errors = [];
+            $('.errors ul').html('');
+            $('.has-error').removeClass('has-error');
+
+            if ($('input[name="username"]').val() == '') {
+                errors.push('Please enter username');
+                $('input[name="username"]').addClass('has-error');
+            }
+            if ($('input[name="password"]').val() == '') {
+                errors.push('Please enter password');
+                $('input[name="password"]').addClass('has-error');
+            }
+            if ($('input[name="password"]').val().length < 8) {
+                errors.push('Password must be at least 8 symold');
+                $('input[name="password"]').addClass('has-error');
+            }
+            if ($('input[name="password2"]').val() == '') {
+                errors.push('Please retype the password');
+                $('input[name="password2"]').addClass('has-error');
+            }
+            if ($('input[name="password2"]').val() != $('input[name="password"]').val()) {
+                errors.push('Passwords must match');
+                $('input[name="password"]').addClass('has-error');
+                $('input[name="password2"]').addClass('has-error');
+            }
+            if ($('input[name="first_name"]').val() == '') {
+                errors.push('Please enter first name');
+                $('input[name="first_name"]').addClass('has-error');
+            }
+            if ($('select[name="country"]').val() == 0) {
+                errors.push('Please select coutnry');
+                $('select[name="country"]').addClass('has-error');
+            }
+            if ($('input[name="agree"]').is(":checked") == false) {
+                errors.push('Please agree with this amazng stuff');
+                $('input[name="agree"]').addClass('has-error');
+            }
+            if (errors.length > 0) {
+                // handle errors
+                for (var index = 0; index < errors.length; index++) {
+                    var element = errors[index];
+                    $('.errors ul').append('<li>' + element + '</li>');
+                }
+                $('.errors').show();
+                return false;
+            }
+        });
+    </script>
 </body>
 </html>

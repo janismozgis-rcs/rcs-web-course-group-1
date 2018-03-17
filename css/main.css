@@ -118,3 +118,6 @@ footer div{
 #chat-send-message-button{
     margin-top: 45px;
 }
+.has-error{
+    border-color: red;
+}
