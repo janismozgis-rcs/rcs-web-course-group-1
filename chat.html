@@ -49,12 +49,13 @@
                     <span class="current-page">Chat</span>
                 </div>
             </div> <!-- .breadcrumbs -->
-            <div class="row">
+            <div class="row" id="chat">
+                
                 <div class="col-sm-12 ">
                     <div class="chat-main-window">
-                        <div class="chat-message">
-                            <h5>Pēteris <em>2018-01-01 00:00:00</em></h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem soluta delectus facere eius quisquam aut perspiciatis excepturi, minima, aliquam minus possimus unde? Quae explicabo iusto, molestiae nulla doloribus saepe sequi!</p>
+                        <div class="chat-message" v-for="message in messages">
+                            <h5>{{ message.username }} <em>{{ message.date }}</em></h5>
+                            <p>{{ message.text }}</p>
                         </div><!-- chat-message -->
                         
                         
@@ -65,22 +66,36 @@
                         <div class="row">
                             <div class="form-group col-sm-12">
                                 <label for="chat-username-input">Username</label>
-                                <input type="text" class="form-control" id="chat-username-input">
+                                <input v-model="newMessageUsername" type="text" class="form-control" id="chat-username-input">
                             </div>
                         </div>
                         <div class="row">
                         
                             <div class="form-group col-sm-10">
                                 <label for="chat-text-input">Message</label>
-                                <textarea class="form-control" id="chat-text-input"></textarea>
+                                <textarea v-model="newMessageText" class="form-control" id="chat-text-input"></textarea>
                             </div>
                             <div class="form-group col-sm-2">
-                                <button class="btn btn-primery" id="chat-send-message-button">Send</button>
+                                <button class="btn btn-primery" id="chat-send-message-button" v-on:click="sendMessage()">Send</button>
                             </div>
                         </div>
 
                     </div>
 
+                </div>
+                <div class="col-md-12">
+                    <hr>
+                    <pre>
+newMessageUsername:
+{{ this.newMessageUsername }}<br>
+newMessageText:
+{{ this.newMessageText }}<br>
+
+
+<br><br><br><br>
+messages:
+{{ messages }}
+                    </pre>
                 </div>
             </div>
 
@@ -96,33 +111,30 @@
             </div>    
         </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <!-- <div class="chat-message">
-            <h5>Pēteris <em>2018-01-01 00:00:00</em></h5>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem soluta delectus facere eius quisquam aut perspiciatis excepturi, minima, aliquam minus possimus unde? Quae explicabo iusto, molestiae nulla doloribus saepe sequi!</p>
-        </div> -->
-    <script>
-        $('#chat-send-message-button').click(function(){
-            // kādus datus insertot
-            var username = $('#chat-username-input').val();
-            var text = $('#chat-text-input').val();
-            var date = new Date();
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-            // kādu elementu insertot
-            var html = '<div class="chat-message">'+
-                '<h5>'+username+' <em>'+date+'</em></h5>'+
-                '<p>'+text+'</p>'+
-                '</div>';
-            
-            var chatMessage = $('<div>').addClass('chat-message');
-            var dateElement = $('<em>').text(date);
-            var title = $('<h5>').text(username).append(dateElement);
-            var messageElement = $('<p>').text(text);
-            chatMessage.append(title).append(messageElement);
-            // pats insert
-            $('.chat-main-window').append(chatMessage);
-            $('#chat-text-input').val('');
-        });
+    <script>
+        var app = new Vue({
+            el: '#chat',
+            data: {
+                messages: [
+                ],
+                newMessageUsername: "",
+                newMessageText: "",
+            },
+            methods: {
+                sendMessage: function(){
+                    var newStuffToAdd = {
+                        username: this.newMessageUsername, // Peteris
+                        text: this.newMessageText, // some text
+                        date: new Date()
+                    }
+                    
+                    this.messages.push(newStuffToAdd);
+                    this.newMessageText = '';
+                }
+            }
+        })
     
     </script>
 </body>
